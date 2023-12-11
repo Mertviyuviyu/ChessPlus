@@ -12,10 +12,12 @@ public abstract class Piece {
     public Position position;
     public Board board;
 
-    public Piece(Color color, Board board){
+    public Piece(Color color, Board board, Position position){
         this.color = color;
         this.board = board;
+        this.position = position;
     }
+
     public void move(Position p){
         this.position.changePosition(p);
     }

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Knight extends Piece{
-    public Knight(Color color, Board board) {
-        super(color, board);
+    public Knight(Color color, Board board, Position position) {
+        super(color, board, position);
 
     }
 

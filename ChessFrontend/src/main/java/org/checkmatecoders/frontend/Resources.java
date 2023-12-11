@@ -1,0 +1,45 @@
+package org.checkmatecoders.frontend;
+
+import javax.imageio.ImageIO;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
+
+
+public class Resources {
+    public static Image whiteRook;
+    public static Image blackRook;
+    public static Image whiteBishop;
+    public static Image blackBishop;
+    public static Image whiteKnight;
+    public static Image blackKnight;
+    public static Image whiteQueen;
+    public static Image blackQueen;
+    public static Image whitePawn;
+    public static Image blackPawn;
+    public static Image whiteKing;
+    public static Image blackKing;
+    public static final int SQUARE_SIZE = 70;
+
+    private static ClassLoader loader =  ClassLoader.getSystemClassLoader();
+    static {
+        try {
+            whiteRook = ImageIO.read(loader.getResource("wrook.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);
+            blackRook = ImageIO.read(loader.getResource("brook.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            whiteKnight = ImageIO.read(loader.getResource("wknight.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            blackKnight = ImageIO.read(loader.getResource("bknight.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            whiteBishop = ImageIO.read(loader.getResource("wbishop.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            blackBishop = ImageIO.read(loader.getResource("bbishop.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            whiteQueen= ImageIO.read(loader.getResource("wqueen.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            blackQueen = ImageIO.read(loader.getResource("bqueen.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            whitePawn = ImageIO.read(loader.getResource("wpawn.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            blackPawn = ImageIO.read(loader.getResource("bpawn.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            whiteKing = ImageIO.read(loader.getResource("wking.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+            blackKing = ImageIO.read(loader.getResource("bking.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}

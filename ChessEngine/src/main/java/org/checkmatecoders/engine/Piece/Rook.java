@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rook extends Piece{
-    public Rook(Color color, Board board) {
-        super(color, board);
+    public Rook(Color color, Board board, Position position) {
+        super(color, board, position);
     }
 
     @Override

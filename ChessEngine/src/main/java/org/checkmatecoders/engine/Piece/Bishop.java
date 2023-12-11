@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Bishop extends Piece{
 
-    public Bishop(Color color, Board board) {
-        super(color, board);
+    public Bishop(Color color, Board board, Position position) {
+        super(color, board, position);
     }
     @Override
     public List<Position> getValidMoves() {

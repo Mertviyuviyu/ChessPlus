@@ -1,7 +1,9 @@
 package org.checkmatecoders.engine;
 
+import org.checkmatecoders.engine.Piece.Color;
 import org.checkmatecoders.engine.Piece.Piece;
 import org.checkmatecoders.engine.Piece.Position;
+import org.checkmatecoders.engine.Piece.Rook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,17 @@ public class Board {
     public Board(){
         pieces = new ArrayList<>();
         listeners = new ArrayList<>();
+    }
+
+    public void addPiece(Piece p) {
+        pieces.add(p);
+        listeners.forEach(i -> i.run());
+    }
+
+    public void resetToStart() {
+        pieces = new ArrayList<>();
+        addPiece(new Rook(Color.White, this, new Position(0, 0)));
+        listeners.forEach(i -> i.run());
     }
 
     public Piece getPiece(Position position) {
