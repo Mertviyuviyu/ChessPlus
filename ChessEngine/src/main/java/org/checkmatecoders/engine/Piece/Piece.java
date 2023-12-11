@@ -16,7 +16,9 @@ public abstract class Piece {
         this.color = color;
         this.board = board;
     }
-
+    public void move(Position p){
+        this.position.changePosition(p);
+    }
     public abstract List<Position> getValidMoves();
 
 }

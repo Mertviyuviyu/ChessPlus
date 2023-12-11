@@ -9,9 +9,9 @@ public class Position{
         this.y = y;
     }
 
-    public void changePosition(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public void changePosition(Position p) {
+        this.x = p.x;
+        this.y = p.y;
     }
 
     public boolean equals(Object object){
