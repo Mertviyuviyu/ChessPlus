@@ -19,6 +19,13 @@ public abstract class Piece {
     public void move(Position p){
         this.position.changePosition(p);
     }
+    public boolean isInBounds(Position move){
+        return move.x >= 0 && move.x <= 7 && move.y >= 0 && move.y <= 7;
+    }
+    public boolean isTherePiece(Position move){
+        Piece targetPiece = this.board.getPiece(move);
+        return targetPiece != null;
+    }
     public abstract List<Position> getValidMoves();
 
 }
