@@ -21,4 +21,8 @@ public class Position{
         Position temp= (Position) object;
         return temp.x == this.x && temp.y == this.y;
     }
+
+    public String toString(){
+        return x + ","+ y;
+    }
 }

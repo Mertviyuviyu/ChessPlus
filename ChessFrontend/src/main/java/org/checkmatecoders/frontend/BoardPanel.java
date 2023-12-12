@@ -2,6 +2,9 @@ package org.checkmatecoders.frontend;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Color;
+import java.util.List;
+
 import org.checkmatecoders.engine.Board;
 import org.checkmatecoders.engine.Piece.*;
 
@@ -10,12 +13,17 @@ public class BoardPanel extends JPanel {
     public final int cols = 8;
     public final int rows = 8;
 
+    public Piece chosenPiece;
+    public ChessListener chessListener;
     public Board board;
 
     public BoardPanel(){
         setPreferredSize(new Dimension(cols* Resources.SQUARE_SIZE,rows* Resources.SQUARE_SIZE));
         board = new Board();
         board.resetToStart();
+        chessListener = new ChessListener(board,this);
+        this.addMouseListener(chessListener);
+        this.addMouseMotionListener(chessListener);
     }
 
     public void paintComponent(Graphics g){
@@ -36,33 +44,54 @@ public class BoardPanel extends JPanel {
             }
         }
 
+        if(chosenPiece != null){
+            List<Position> moves = chosenPiece.getValidMoves();
+            for(Position p: moves){
+                g2.setColor(new Color(103,177,86,190));
+                g2.fillRect(p.x * Resources.SQUARE_SIZE, p.y*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+            }
+        }
+
         drawPieces(g);
+        repaint();
     }
 
     public void drawPieces(Graphics g) {
         for (Piece p : board.pieces) {
             if (p instanceof Rook) {
                 switch (p.color) {
-                    case White -> g.drawImage(Resources.whiteRook, p.position.x* Resources.SQUARE_SIZE, p.position.y* Resources.SQUARE_SIZE, null);
-                    case Black -> g.drawImage(Resources.blackRook, p.position.x* Resources.SQUARE_SIZE, p.position.y* Resources.SQUARE_SIZE, null);
+                    case White -> g.drawImage(Resources.whiteRook, p.xPos, p.yPos, null);
+                    case Black -> g.drawImage(Resources.blackRook, p.xPos, p.yPos, null);
                 }
             }
             if (p instanceof Bishop) {
                 switch (p.color) {
-                    case White -> g.drawImage(Resources.whiteBishop, p.position.x* Resources.SQUARE_SIZE, p.position.y* Resources.SQUARE_SIZE, null);
-                    case Black -> g.drawImage(Resources.blackBishop, p.position.x* Resources.SQUARE_SIZE, p.position.y* Resources.SQUARE_SIZE, null);
+                    case White -> g.drawImage(Resources.whiteBishop, p.xPos, p.yPos, null);
+                    case Black -> g.drawImage(Resources.blackBishop, p.xPos, p.yPos, null);
                 }
             }
             if (p instanceof Knight) {
                 switch (p.color) {
-                    case White -> g.drawImage(Resources.whiteKnight, p.position.x* Resources.SQUARE_SIZE, p.position.y* Resources.SQUARE_SIZE, null);
-                    case Black -> g.drawImage(Resources.blackKnight, p.position.x* Resources.SQUARE_SIZE, p.position.y* Resources.SQUARE_SIZE, null);
+                    case White -> g.drawImage(Resources.whiteKnight, p.xPos, p.yPos, null);
+                    case Black -> g.drawImage(Resources.blackKnight, p.xPos, p.yPos, null);
                 }
             }
             if (p instanceof Queen) {
                 switch (p.color) {
-                    case White -> g.drawImage(Resources.whiteQueen, p.position.x* Resources.SQUARE_SIZE, p.position.y* Resources.SQUARE_SIZE, null);
-                    case Black -> g.drawImage(Resources.blackQueen, p.position.x* Resources.SQUARE_SIZE, p.position.y* Resources.SQUARE_SIZE, null);
+                    case White -> g.drawImage(Resources.whiteQueen, p.xPos, p.yPos, null);
+                    case Black -> g.drawImage(Resources.blackQueen, p.xPos, p.yPos, null);
+                }
+            }
+            if (p instanceof King) {
+                switch (p.color) {
+                    case White -> g.drawImage(Resources.whiteKing, p.xPos, p.yPos, null);
+                    case Black -> g.drawImage(Resources.blackKing, p.xPos, p.yPos, null);
+                }
+            }
+            if (p instanceof Pawn) {
+                switch (p.color) {
+                    case White -> g.drawImage(Resources.whitePawn, p.xPos, p.yPos, null);
+                    case Black -> g.drawImage(Resources.blackPawn, p.xPos, p.yPos, null);
                 }
             }
         }

@@ -12,10 +12,14 @@ public abstract class Piece {
     public Position position;
     public Board board;
 
+    public int xPos,yPos;
+
     public Piece(Color color, Board board, Position position){
         this.color = color;
         this.board = board;
         this.position = position;
+        xPos = position.x * 70;
+        yPos = position.y * 70;
     }
 
     public void move(Position p){
