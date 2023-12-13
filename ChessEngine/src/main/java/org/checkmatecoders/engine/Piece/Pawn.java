@@ -27,7 +27,7 @@ public class Pawn extends Piece{
     @Override
     public List<Position> getValidMoves() {
         List<Position> allMoves = new ArrayList<Position>();
-        if(isFirstMove){
+        if(isFirstMove && board.getPiece(new Position(this.position.x,this.position.y + movingWay)) == null && board.getPiece(new Position(this.position.x,this.position.y + 2*movingWay)) == null){
             allMoves.add(new Position(this.position.x, this.position.y +2*movingWay));
         }
         if(board.getPiece(new Position(this.position.x,this.position.y + movingWay)) == null){
