@@ -1,5 +1,6 @@
 package org.checkmatecoders.frontend;
 
+import org.checkmatecoders.engine.Piece.Color;
 import org.checkmatecoders.engine.Piece.Piece;
 import org.checkmatecoders.engine.Board;
 import org.checkmatecoders.engine.Piece.Position;
@@ -25,7 +26,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
         int row = e.getY() / Resources.SQUARE_SIZE;
 
         Piece pieceTry = board.getPiece(new Position(col,row));
-        if(pieceTry != null){
+        if(pieceTry != null && pieceTry.color == boardPanel.turn){
             boardPanel.chosenPiece = pieceTry;
         }
 
@@ -49,6 +50,12 @@ public class ChessListener implements MouseListener, MouseMotionListener {
             for(Position pos: moves){
                 if(pos.equals(newPosition)){
                     board.movePiece(currentPosition,newPosition);
+                    if(boardPanel.turn == Color.White){
+                        boardPanel.turn = Color.Black;
+                    }
+                    else{
+                        boardPanel.turn = Color.White;
+                    }
                 }
             }
             boardPanel.chosenPiece.xPos = boardPanel.chosenPiece.position.x * Resources.SQUARE_SIZE;

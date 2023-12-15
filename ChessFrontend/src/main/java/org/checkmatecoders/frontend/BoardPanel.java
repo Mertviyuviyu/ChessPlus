@@ -14,6 +14,7 @@ public class BoardPanel extends JPanel {
     public final int rows = 8;
 
     public Piece chosenPiece;
+    public org.checkmatecoders.engine.Piece.Color turn;
     public ChessListener chessListener;
     public Board board;
 
@@ -24,6 +25,7 @@ public class BoardPanel extends JPanel {
         chessListener = new ChessListener(board,this);
         this.addMouseListener(chessListener);
         this.addMouseMotionListener(chessListener);
+        turn = org.checkmatecoders.engine.Piece.Color.White;
     }
 
     public void paintComponent(Graphics g){
@@ -44,7 +46,7 @@ public class BoardPanel extends JPanel {
             }
         }
 
-        if(chosenPiece != null){
+        if(chosenPiece != null && chosenPiece.color == turn){
             List<Position> moves = chosenPiece.getValidMoves();
             for(Position p: moves){
                 g2.setColor(new Color(103,177,86,190));
