@@ -1,6 +1,8 @@
 package org.checkmatecoders.engine;
 
 import org.checkmatecoders.engine.Piece.*;
+import org.checkmatecoders.engine.Spell.Spell;
+import org.checkmatecoders.engine.Spell.Swap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class Board {
     public List<Piece> pieces;
+    public List<Spell> spells;
     public List<Runnable> listeners;
 
 
@@ -19,6 +22,11 @@ public class Board {
 
     public void addPiece(Piece p) {
         pieces.add(p);
+        listeners.forEach(i -> i.run());
+    }
+
+    public void addSpell(Spell s) {
+        spells.add(s);
         listeners.forEach(i -> i.run());
     }
 
@@ -59,8 +67,12 @@ public class Board {
         addPiece(new Pawn(Color.Black,this,new Position(6,1)));
         addPiece(new Pawn(Color.Black,this,new Position(7,1)));
         listeners.forEach(i -> i.run());
-    }
 
+        spells = new ArrayList<>();
+        addSpell(new Swap(this, 2, 2));
+    }
+    public int spellSize() { return spells.size();}
+    
     public Piece getPiece(Position position) {
         for (Piece i: pieces) {
             if (i.position.equals(position)) {
