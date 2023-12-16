@@ -2,6 +2,7 @@ package org.checkmatecoders.engine.Spell;
 
 import org.checkmatecoders.engine.Board;
 import org.checkmatecoders.engine.Piece.Piece;
+import org.checkmatecoders.engine.Piece.Position;
 
 public class Freeze extends Spell {
 int size;
@@ -9,8 +10,8 @@ int size;
 
 final int freezeTime = 3;
 
-    public Freeze(Board board, int amount, int cooldown, int size) {
-        super(board, amount, cooldown);
+    public Freeze(Board board, int amount, int cooldown, int size, Position position) {
+        super(board, amount, cooldown, position);
         this.size = size;
         //TODO Auto-generated constructor stub
     }

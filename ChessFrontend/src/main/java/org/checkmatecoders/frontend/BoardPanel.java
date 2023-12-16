@@ -17,13 +17,14 @@ public class BoardPanel extends JPanel {
     public final int rows = 8;
 
     public Piece chosenPiece;
+    public Spell choosenSpell;
     public org.checkmatecoders.engine.Piece.Color turn;
     public ChessListener chessListener;
     public Board board;
     
 
     public BoardPanel(){
-        setPreferredSize(new Dimension(cols* Resources.SQUARE_SIZE ,rows* Resources.SQUARE_SIZE + 2*Resources.SPELL_SIZE));
+        setPreferredSize(new Dimension(cols* Resources.SQUARE_SIZE ,rows* Resources.SQUARE_SIZE ));
         board = new Board();
         board.resetToStart();
         chessListener = new ChessListener(board,this);
@@ -77,11 +78,11 @@ public class BoardPanel extends JPanel {
             
            
                 if(s instanceof Freeze){ 
-                g.drawImage(Resources.freeze, 20+(1*40) , 600 , null);
+                g.drawImage(Resources.freeze, 20 + s.xPos ,  20 + s.yPos , null);
                 
                 }
                 if(s instanceof Swap){ 
-                g.drawImage(Resources.swap, 20+(2*40) , 600 , null);
+                g.drawImage(Resources.swap,20 + s.xPos , 20 + s.yPos , null);
                 
                 } 
             

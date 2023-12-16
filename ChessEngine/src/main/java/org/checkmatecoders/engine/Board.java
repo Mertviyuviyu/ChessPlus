@@ -1,6 +1,7 @@
 package org.checkmatecoders.engine;
 
 import org.checkmatecoders.engine.Piece.*;
+import org.checkmatecoders.engine.Spell.Freeze;
 import org.checkmatecoders.engine.Spell.Spell;
 import org.checkmatecoders.engine.Spell.Swap;
 
@@ -66,10 +67,12 @@ public class Board {
         addPiece(new Pawn(Color.Black,this,new Position(5,1)));
         addPiece(new Pawn(Color.Black,this,new Position(6,1)));
         addPiece(new Pawn(Color.Black,this,new Position(7,1)));
-        listeners.forEach(i -> i.run());
+        
 
         spells = new ArrayList<>();
-        addSpell(new Swap(this, 2, 2));
+        addSpell(new Swap(this, 2, 2, new Position(0, 8)));
+        addSpell(new Freeze(this, 2, 2,3, new Position(1, 8)));
+        listeners.forEach(i -> i.run());
     }
     public int spellSize() { return spells.size();}
     
@@ -82,6 +85,15 @@ public class Board {
         return null;
     }
 
+    public Spell getSpell(Position position) {
+        for (Spell i: spells) {
+            if (i.position.equals(position)) {
+                return i;
+            }
+        }
+        return null;
+    }
+    
     public void movePiece(Position p1, Position p2){
         if(getPiece(p2) != null){
             pieces.remove(getPiece(p2));

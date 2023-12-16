@@ -5,8 +5,8 @@ import org.checkmatecoders.engine.Piece.Position;
 
 public class Teleport extends Spell {
 
-    public Teleport(Board board, int amount, int cooldown) {
-        super(board, amount, cooldown);
+    public Teleport(Board board, int amount, int cooldown, Position position) {
+        super(board, amount, cooldown, position);
         //TODO Auto-generated constructor stub
     }
 

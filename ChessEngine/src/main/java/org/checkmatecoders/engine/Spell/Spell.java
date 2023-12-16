@@ -5,18 +5,23 @@ import org.checkmatecoders.engine.Piece.Piece;
 import org.checkmatecoders.engine.Piece.Position;
 
 public abstract class Spell {
-    Piece piece;
-    Position position;
-    Board board;
+    public Piece piece;
+    public Position position;
+    public Board board;
     int cooldown;
     int amount;
     boolean currentlyUsed;
 
- public Spell(Board board,int amount, int cooldown){
+    public int xPos,yPos;
+
+ public Spell(Board board,int amount, int cooldown, Position position){
     this.board = board;
     this.amount = amount;
     this.cooldown = cooldown;
-
+    this.position = position;
+    
+    xPos = position.x * 70;
+    yPos = position.y * 70;
 
     }
 

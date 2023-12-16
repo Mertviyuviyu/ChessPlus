@@ -1,11 +1,12 @@
 package org.checkmatecoders.engine.Spell;
 
 import org.checkmatecoders.engine.Board;
+import org.checkmatecoders.engine.Piece.Position;
 
 public class Shield extends Spell {
 
-    public Shield(Board board, int amount, int cooldown) {
-        super(board, amount, cooldown);
+    public Shield(Board board, int amount, int cooldown, Position position) {
+        super(board, amount, cooldown, position);
         //TODO Auto-generated constructor stub
     }
 
