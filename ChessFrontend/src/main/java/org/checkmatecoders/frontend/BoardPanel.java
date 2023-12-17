@@ -11,6 +11,7 @@ import org.checkmatecoders.engine.Spell.Freeze;
 import org.checkmatecoders.engine.Spell.Shield;
 import org.checkmatecoders.engine.Spell.Spell;
 import org.checkmatecoders.engine.Spell.Swap;
+import org.checkmatecoders.engine.Spell.TimeTravel;
 
 public class BoardPanel extends JPanel {
 
@@ -92,7 +93,10 @@ public class BoardPanel extends JPanel {
                 g.drawImage(Resources.shield,20 + s.xPos , 20 + s.yPos , null);
                 
                 } 
-            
+                if(s instanceof TimeTravel){ 
+                g.drawImage(Resources.time,20 + s.xPos , 20 + s.yPos , null);
+                
+                } 
         }
     }
     public void drawSpellEffect(Graphics g){
