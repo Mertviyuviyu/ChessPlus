@@ -15,6 +15,7 @@ public class Queen extends Piece{
     public List<Position> getValidMoves() {
         List<Position> allMoves = new ArrayList<Position>();
         //Move Right
+        if(canMove && capturable){
         for(int x = this.position.x + 1 ; x < 8 ; x++){
             Position pos = new Position(x, this.position.y);
             if(isInBounds(pos)){
@@ -118,6 +119,7 @@ public class Queen extends Piece{
                 allMoves.add(pos);
             }
         }
+    }
         return allMoves;
     }
 }

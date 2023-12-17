@@ -23,6 +23,7 @@ public class Resources {
 
     public static Image freeze;
     public static Image swap;
+    public static Image shield;
     public static final int SQUARE_SIZE = 70;
     public static final int SPELL_SIZE = 50;
 
@@ -44,7 +45,7 @@ public class Resources {
 
             freeze = ImageIO.read(loader.getResource("freeze.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
             swap = ImageIO.read(loader.getResource("swap.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
-
+            shield = ImageIO.read(loader.getResource("shield.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

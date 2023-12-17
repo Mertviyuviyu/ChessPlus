@@ -11,6 +11,7 @@ public abstract class Spell {
     int cooldown;
     int amount;
     boolean currentlyUsed;
+    private Position targetedPosition;
 
     public int xPos,yPos;
 
@@ -19,9 +20,12 @@ public abstract class Spell {
     this.amount = amount;
     this.cooldown = cooldown;
     this.position = position;
-    
+
+    currentlyUsed = false;
     xPos = position.x * 70;
     yPos = position.y * 70;
+
+    
 
     }
 
@@ -33,4 +37,12 @@ public int getCooldown(){ return this.cooldown; }
 public abstract boolean checkValidity();
 
 public abstract void spellAction();
+
+public Position getTargetedPosition(){
+    return targetedPosition;
 }
+public void setTargetedPosition(Position tposition){
+    targetedPosition = tposition;
+}
+}
+

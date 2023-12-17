@@ -1,6 +1,7 @@
 package org.checkmatecoders.engine.Spell;
 
 import org.checkmatecoders.engine.Board;
+import org.checkmatecoders.engine.Piece.Piece;
 import org.checkmatecoders.engine.Piece.Position;
 
 public class Shield extends Spell {
@@ -13,13 +14,18 @@ public class Shield extends Spell {
     @Override
     public boolean checkValidity() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'checkValidity'");
+        return(board.getPiece(getTargetedPosition()) != null);
     }
 
     @Override
     public void spellAction() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'spellAction'");
+        if(checkValidity()){
+            board.getPiece(getTargetedPosition()).capturable = false;
+            
+            
+            
+        }
     }
     
 }

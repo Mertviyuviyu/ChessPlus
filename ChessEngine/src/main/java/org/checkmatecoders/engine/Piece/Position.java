@@ -3,10 +3,12 @@ package org.checkmatecoders.engine.Piece;
 public class Position{
     public int x;
     public int y;
+    boolean capturable;
 
     public Position(int x, int y){
         this.x = x;
         this.y = y;
+        capturable = true;
     }
 
     public void changePosition(Position p) {

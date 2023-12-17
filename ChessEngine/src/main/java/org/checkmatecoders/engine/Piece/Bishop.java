@@ -14,12 +14,17 @@ public class Bishop extends Piece{
     public List<Position> getValidMoves() {
         List<Position> allMoves = new ArrayList<Position>();
         //Up right
+        if(canMove){
         for(int i = 1; this.position.x + i < 8 && this.position.y + i < 8; i++){
             Position pos = new Position(this.position.x + i, this.position.y + i);
             if(isInBounds(pos)){
                 if(isTherePiece(pos)){
                     if(board.getPiece(pos).color != this.color){
+                        if(board.getPiece(pos).capturable)
                         allMoves.add(pos);
+                        else{
+                            break;
+                        }
                     }
                     break;
                 }
@@ -32,7 +37,11 @@ public class Bishop extends Piece{
             if(isInBounds(pos)){
                 if(isTherePiece(pos)){
                     if(board.getPiece(pos).color != this.color){
+                        if(board.getPiece(pos).capturable)
                         allMoves.add(pos);
+                        else{
+                            break;
+                        }
                     }
                     break;
                 }
@@ -45,7 +54,11 @@ public class Bishop extends Piece{
             if (isInBounds(pos)) {
                 if (isTherePiece(pos)) {
                     if (board.getPiece(pos).color != this.color) {
+                        if(board.getPiece(pos).capturable)
                         allMoves.add(pos);
+                        else{
+                            break;
+                        }
                     }
                     break;
                 }
@@ -58,13 +71,18 @@ public class Bishop extends Piece{
             if (isInBounds(pos)) {
                 if (isTherePiece(pos)) {
                     if (board.getPiece(pos).color != this.color) {
+                        if(board.getPiece(pos).capturable)
                         allMoves.add(pos);
+                        else{
+                            break;
+                        }
                     }
                     break;
                 }
                 allMoves.add(pos);
             }
         }
+    }
         return allMoves;
     }
 }

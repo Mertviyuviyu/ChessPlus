@@ -19,7 +19,7 @@ public class TimeTravel extends Spell {
     @Override
     public void spellAction() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'spellAction'");
+        
     }
     
 }

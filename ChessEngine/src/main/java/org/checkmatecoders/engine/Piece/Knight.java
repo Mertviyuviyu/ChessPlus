@@ -16,6 +16,7 @@ public class Knight extends Piece{
     @Override
     public List<Position> getValidMoves() {
         List<Position> allMoves = new ArrayList<Position>();
+        if(canMove && capturable){
         allMoves.add(new Position(this.position.x + 2, this.position.y + 1));
         allMoves.add(new Position(this.position.x + 1, this.position.y + 2));
 
@@ -38,6 +39,7 @@ public class Knight extends Piece{
                 return false;
             return true;
         });
+    }
 
         return allMoves;
     }

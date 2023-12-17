@@ -12,6 +12,9 @@ public abstract class Piece {
     public Position position;
     public Board board;
 
+    public boolean capturable;
+    public boolean canMove;
+
     public int xPos,yPos;
 
     public Piece(Color color, Board board, Position position){
@@ -20,6 +23,9 @@ public abstract class Piece {
         this.position = position;
         xPos = position.x * 70;
         yPos = position.y * 70;
+
+        this.capturable = true;
+        this.canMove = true;
     }
 
     public void move(Position p){
@@ -30,8 +36,9 @@ public abstract class Piece {
     }
     public boolean isTherePiece(Position move){
         Piece targetPiece = this.board.getPiece(move);
-        return targetPiece != null;
+        return (targetPiece != null);
     }
+    
     public abstract List<Position> getValidMoves();
 
 }

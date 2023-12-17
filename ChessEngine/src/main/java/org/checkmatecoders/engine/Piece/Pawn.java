@@ -2,6 +2,7 @@ package org.checkmatecoders.engine.Piece;
 
 import org.checkmatecoders.engine.Board;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,25 +28,27 @@ public class Pawn extends Piece{
     @Override
     public List<Position> getValidMoves() {
         List<Position> allMoves = new ArrayList<Position>();
+        if(canMove){
         if(isFirstMove && board.getPiece(new Position(this.position.x,this.position.y + movingWay)) == null && board.getPiece(new Position(this.position.x,this.position.y + 2*movingWay)) == null){
             allMoves.add(new Position(this.position.x, this.position.y +2*movingWay));
         }
-        if(board.getPiece(new Position(this.position.x,this.position.y + movingWay)) == null){
+        if(board.getPiece(new Position(this.position.x,this.position.y + movingWay) ) == null){
             allMoves.add(new Position(this.position.x, this.position.y + movingWay));
         }
 
         if(board.getPiece(new Position(this.position.x +1,this.position.y + movingWay)) != null){
             Piece p = board.getPiece(new Position(this.position.x +1,this.position.y + movingWay));
-            if(p.color != this.color){
+            if(p.color != this.color && p.capturable){
                 allMoves.add(new Position(this.position.x+1, this.position.y + movingWay));
             }
         }
         if(board.getPiece(new Position(this.position.x - 1,this.position.y + movingWay)) != null){
             Piece p = board.getPiece(new Position(this.position.x -1,this.position.y + movingWay));
-            if(p.color != this.color){
+            if(p.color != this.color && p.capturable){
                 allMoves.add(new Position(this.position.x-1, this.position.y + movingWay));
             }
         }
+    }
         return allMoves;
     }
 }

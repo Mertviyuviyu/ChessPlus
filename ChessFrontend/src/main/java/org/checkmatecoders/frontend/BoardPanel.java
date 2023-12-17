@@ -8,6 +8,7 @@ import java.util.List;
 import org.checkmatecoders.engine.Board;
 import org.checkmatecoders.engine.Piece.*;
 import org.checkmatecoders.engine.Spell.Freeze;
+import org.checkmatecoders.engine.Spell.Shield;
 import org.checkmatecoders.engine.Spell.Spell;
 import org.checkmatecoders.engine.Spell.Swap;
 
@@ -68,6 +69,7 @@ public class BoardPanel extends JPanel {
         
         drawPieces(g);
         showSpellFrame(g);
+        //drawSpellEffect(g);
         repaint();
     }
     public void showSpellFrame(Graphics g){
@@ -85,11 +87,26 @@ public class BoardPanel extends JPanel {
                 g.drawImage(Resources.swap,20 + s.xPos , 20 + s.yPos , null);
                 
                 } 
+
+                if(s instanceof Shield){ 
+                g.drawImage(Resources.shield,20 + s.xPos , 20 + s.yPos , null);
+                
+                } 
             
         }
     }
     public void drawSpellEffect(Graphics g){
-
+        
+        
+        
+        
+        if(choosenSpell != null && choosenSpell.getTargetedPosition() != null && choosenSpell instanceof Freeze){
+            Color color = new Color(51,153,255,126);
+            int col = choosenSpell.getTargetedPosition().x * Resources.SQUARE_SIZE;
+             int row = choosenSpell.getTargetedPosition().y * Resources.SQUARE_SIZE;
+        g.setColor(color);
+        g.fillRect(col, row,  Resources.SQUARE_SIZE,  Resources.SQUARE_SIZE);
+        }
     }
 
     public void drawPieces(Graphics g) {

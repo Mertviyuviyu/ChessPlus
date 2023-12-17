@@ -2,6 +2,7 @@ package org.checkmatecoders.engine;
 
 import org.checkmatecoders.engine.Piece.*;
 import org.checkmatecoders.engine.Spell.Freeze;
+import org.checkmatecoders.engine.Spell.Shield;
 import org.checkmatecoders.engine.Spell.Spell;
 import org.checkmatecoders.engine.Spell.Swap;
 
@@ -72,6 +73,7 @@ public class Board {
         spells = new ArrayList<>();
         addSpell(new Swap(this, 2, 2, new Position(0, 8)));
         addSpell(new Freeze(this, 2, 2,3, new Position(1, 8)));
+        addSpell(new Shield(this, 2, 2, new Position(2, 8)));
         listeners.forEach(i -> i.run());
     }
     public int spellSize() { return spells.size();}

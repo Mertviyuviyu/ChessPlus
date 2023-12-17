@@ -1,6 +1,11 @@
 package org.checkmatecoders.engine.Spell;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.checkmatecoders.engine.Board;
+import org.checkmatecoders.engine.Piece.Ghost;
 import org.checkmatecoders.engine.Piece.Piece;
 import org.checkmatecoders.engine.Piece.Position;
 
@@ -15,29 +20,41 @@ final int freezeTime = 3;
         this.size = size;
         //TODO Auto-generated constructor stub
     }
-
+    public int getSize(){
+        return size;
+    }
     @Override
     public boolean checkValidity() {
         //will use no mather how the chess-board condition is
         return( amount > 0); 
        
     }
-
+    
     @Override
     public void spellAction() {
         // TODO Auto-generated method stub
         if(checkValidity()){
-            for(int i = freezeTime; i>0; i--){
-               
-                // deactivation (freeze) of cells the position being the center
+
+            // deactivation (freeze) of cells the position being the center
+            
+            
+                if(getTargetedPosition().x != 0 && getTargetedPosition().y !=0){
+                    if(!currentlyUsed){
+                        if(board.getPiece(getTargetedPosition()) != null){
+                    board.getPiece(getTargetedPosition()).capturable = false;
+                    board.getPiece(getTargetedPosition()).canMove = false;
+                        }
+                }
                 
-
-
-
-            super.currentlyUsed = false;
-            }
-        currentlyUsed = false;
+                    else{
+                    board.addPiece(new Ghost(null, board, position));
+                    }
+                }
+            
         }
-    }
+         
+     }
+ }
     
-}
+
+
