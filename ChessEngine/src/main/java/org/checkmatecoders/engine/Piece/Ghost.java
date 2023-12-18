@@ -14,10 +14,21 @@ public class Ghost extends Piece {
     }
 
     @Override
+    public List<Position> checkDirection() {
+        return null;
+    }
+
+    @Override
     public List<Position> getValidMoves() {
         // TODO Auto-generated method stub
             List<Position> allMoves = new ArrayList<Position>();
             return null;
+    }
+    @Override
+    public List<Position> getValidMoves2() {
+        // TODO Auto-generated method stub
+        List<Position> allMoves = new ArrayList<Position>();
+        return null;
     }
     
 }

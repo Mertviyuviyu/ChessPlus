@@ -7,6 +7,7 @@ import org.checkmatecoders.engine.Spell.Spell;
 import org.checkmatecoders.engine.Spell.Swap;
 import org.checkmatecoders.engine.Spell.TimeTravel;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -17,6 +18,7 @@ public class Board {
     public List<Spell> spells;
     public List<Runnable> listeners;
 
+    public Color winner;
 
     public Board(){
         pieces = new ArrayList<>();
@@ -97,9 +99,37 @@ public class Board {
         }
         return null;
     }
+
+    public List<Position> check() {
+        List<Position> checkingPieces = new ArrayList<Position>();
+        for (Piece j : this.pieces) {
+            if (! j.getValidMoves2()
+                    .stream()
+                    .filter(i -> this.isTherePiece(i) && this.getPiece(i) instanceof King && this.getPiece(i).color != j.color)
+                    .collect(Collectors.toList()).isEmpty()){
+                checkingPieces.add(j.position);
+            }
+        }
+        return checkingPieces;
+    }
+
+    public boolean isTherePiece(Position move) {
+        Piece targetPiece = this.getPiece(move);
+        return (targetPiece != null);
+    }
     
     public void movePiece(Position p1, Position p2){
-        if(getPiece(p2) != null){
+        Piece p = getPiece(p2);
+        if(p != null){
+            if(p instanceof King){
+                if(p.color == Color.White){
+                    winner = Color.Black;
+                }
+                else {
+                    winner = Color.White;
+                }
+                JOptionPane.showMessageDialog(null, "Winner is"+winner);
+            }
             pieces.remove(getPiece(p2));
         }
         getPiece(p1).move(p2);

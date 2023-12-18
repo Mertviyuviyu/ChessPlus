@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class StartFrame extends JFrame implements ActionListener {
     JButton but;
-
+    BoardPanel b;
     public StartFrame(){
         setLayout(new BorderLayout());
         but = new JButton("Play");
@@ -31,9 +31,9 @@ public class StartFrame extends JFrame implements ActionListener {
         g.setColor(new Color(10, 10, 10));
         g.setFont(new Font("Arial", Font.BOLD, 25));
         g.drawString("Credits:",50,120);
-        g.drawString("Mustafa Mert Gulhan", 50, 150);
-        g.drawString("Anil Keskin", 50, 180);
-        g.drawString("Altay Ilker Yigitel", 50, 210);
+        g.drawString("Mustafa Mert Gulhan", 50, 180);
+        g.drawString("Anil Keskin", 50, 210);
+        g.drawString("Altay Ilker Yigitel", 50, 150);
         g.drawString("Emre Algur", 50, 240);
 
     }
@@ -47,7 +47,7 @@ public class StartFrame extends JFrame implements ActionListener {
             f.setLayout(new BorderLayout());
             f.setSize(new Dimension(800, 900));
             f.setLocationRelativeTo(null);
-            BoardPanel b = new BoardPanel();
+            b = new BoardPanel();
             //SpellPanel s = new SpellPanel();
 
             //f.add(s, BorderLayout.SOUTH);
@@ -56,5 +56,7 @@ public class StartFrame extends JFrame implements ActionListener {
             f.setVisible(true);
             f.pack();
         }
+
+
     }
 }
