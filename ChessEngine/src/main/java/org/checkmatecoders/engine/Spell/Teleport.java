@@ -12,7 +12,7 @@ private Position choosenPosition;
 
     @Override
     public boolean checkValidity() {
-        return board.getPiece(choosenPosition)  == null ;
+        return (board.getPiece(choosenPosition)  != null && board.getPiece(getTargetedPosition()) == null);
     }
 
     @Override

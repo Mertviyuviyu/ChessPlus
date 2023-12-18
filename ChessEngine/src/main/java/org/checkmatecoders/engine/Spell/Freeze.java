@@ -26,7 +26,7 @@ final int freezeTime = 3;
     @Override
     public boolean checkValidity() {
         //will use no mather how the chess-board condition is
-        return( amount > 0); 
+        return( amount > 0 && getTargetedPosition().x != 0 && getTargetedPosition().y !=0 ); 
        
     }
     
@@ -38,7 +38,7 @@ final int freezeTime = 3;
             // deactivation (freeze) of cells the position being the center
             
             
-                if(getTargetedPosition().x != 0 && getTargetedPosition().y !=0){
+                
                     if(!currentlyUsed){
                         if(board.getPiece(getTargetedPosition()) != null){
                     board.getPiece(getTargetedPosition()).capturable = false;
@@ -49,7 +49,7 @@ final int freezeTime = 3;
                     else{
                     board.addPiece(new Ghost(null, board, position));
                     }
-                }
+                
             
         }
          

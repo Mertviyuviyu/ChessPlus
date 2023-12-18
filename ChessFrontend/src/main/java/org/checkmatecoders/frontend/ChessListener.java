@@ -14,6 +14,7 @@ import org.checkmatecoders.engine.Spell.TimeTravel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,6 +117,10 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                 }
             }
     }
+    if(boardPanel.choosenSpell instanceof TimeTravel){
+        System.out.println("ZA WARUDOO!");
+
+    }
 }
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -133,6 +138,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
             boardPanel.choosenSpell.yPos = e.getY() - Resources.SQUARE_SIZE / 2;
             boardPanel.choosenSpell.setTargetedPosition(new Position(boardPanel.choosenSpell.xPos,boardPanel.choosenSpell.yPos));
         }
+        
     }
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -144,6 +150,14 @@ public class ChessListener implements MouseListener, MouseMotionListener {
             Position currentPosition = boardPanel.chosenPiece.position;
             for(Position pos: moves){
                 if(pos.equals(newPosition)){
+                    if(boardPanel.choosenSpell instanceof TimeTravel){
+                        ((TimeTravel) boardPanel.choosenSpell).setTimePiece(currentPosition);
+                        boardPanel.choosenSpell.setTargetedPosition(newPosition);
+                        boardPanel.choosenSpell.spellAction();
+                        boardPanel.choosenSpell = null;
+                    boardPanel.repaint();
+                        break;
+                    }
                     board.movePiece(currentPosition,newPosition);
                     if(boardPanel.turn == Color.White){
                         boardPanel.turn = Color.Black;
@@ -158,7 +172,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
             boardPanel.chosenPiece = null;
             boardPanel.repaint();
         }
-        else if(boardPanel.choosenSpell != null){
+        if(boardPanel.choosenSpell != null){
             if( boardPanel.choosenSpell instanceof Freeze){
                 int size = ((Freeze) boardPanel.choosenSpell).getSize();
                 for(int i =(-(size-1)/2); i<=((size-1)/2) ; i++){
@@ -190,7 +204,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                     }
                      boardPanel.choosenSpell = null;
             }
-
+            
         }
 
     }

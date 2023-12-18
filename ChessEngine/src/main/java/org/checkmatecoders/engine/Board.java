@@ -5,6 +5,7 @@ import org.checkmatecoders.engine.Spell.Freeze;
 import org.checkmatecoders.engine.Spell.Shield;
 import org.checkmatecoders.engine.Spell.Spell;
 import org.checkmatecoders.engine.Spell.Swap;
+import org.checkmatecoders.engine.Spell.TimeTravel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,7 @@ public class Board {
         addSpell(new Swap(this, 2, 2, new Position(0, 8)));
         addSpell(new Freeze(this, 2, 2,3, new Position(1, 8)));
         addSpell(new Shield(this, 2, 2, new Position(2, 8)));
+        addSpell(new TimeTravel(this, 2, 2, new Position(3, 8)));
         listeners.forEach(i -> i.run());
     }
     public int spellSize() { return spells.size();}
