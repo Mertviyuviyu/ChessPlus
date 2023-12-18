@@ -20,6 +20,7 @@ public class Resources {
     public static Image blackPawn;
     public static Image whiteKing;
     public static Image blackKing;
+    public static Image startingPage;
 
     public static Image freeze;
     public static Image swap;
@@ -42,7 +43,7 @@ public class Resources {
             blackPawn = ImageIO.read(loader.getResource("bpawn.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
             whiteKing = ImageIO.read(loader.getResource("wking.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
             blackKing = ImageIO.read(loader.getResource("bking.png")).getScaledInstance(SQUARE_SIZE, SQUARE_SIZE, BufferedImage.SCALE_SMOOTH);;
-
+            startingPage = ImageIO.read(loader.getResource("start.png")).getScaledInstance(500,500, BufferedImage.SCALE_SMOOTH);
             freeze = ImageIO.read(loader.getResource("freeze.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
             swap = ImageIO.read(loader.getResource("swap.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
             shield = ImageIO.read(loader.getResource("shield.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
