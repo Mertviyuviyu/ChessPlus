@@ -26,7 +26,7 @@ public class BoardPanel extends JPanel {
     
 
     public BoardPanel(){
-        setPreferredSize(new Dimension(cols* Resources.SQUARE_SIZE ,rows* Resources.SQUARE_SIZE ));
+        setPreferredSize(new Dimension(8* Resources.SQUARE_SIZE ,9* Resources.SQUARE_SIZE ));
         board = new Board();
         board.resetToStart();
         chessListener = new ChessListener(board,this);
