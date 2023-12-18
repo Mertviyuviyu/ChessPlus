@@ -21,11 +21,19 @@ public class Shield extends Spell {
     public void spellAction() {
         // TODO Auto-generated method stub
         if(checkValidity()){
+            if(duration>0)
             board.getPiece(getTargetedPosition()).capturable = false;
             
-            
+            currentlyUsed = true;
+
+            if(duration == 0){
+            board.getPiece(getTargetedPosition()).capturable = true;
+            currentlyUsed = false;
+            System.out.println("Iam not protected");
+        }
             
         }
+        
     }
     
 }

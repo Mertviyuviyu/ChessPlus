@@ -18,12 +18,15 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ChessListener implements MouseListener, MouseMotionListener {
     Board board;
     BoardPanel boardPanel;
+    List<Spell> activeSpellEffects;
     public ChessListener(Board board,BoardPanel boardPanel){
         this.board = board;
         this.boardPanel = boardPanel;
+         activeSpellEffects = new ArrayList<>();
     }
 
     @Override
@@ -38,6 +41,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
         Spell spellTry = board.getSpell(new Position(col, row));
         if(spellTry != null){
             boardPanel.choosenSpell = spellTry;
+            boardPanel.choosenSpell.setTargetedPosition(new Position(col, row));
             System.out.println("I was chosen");
         }
         
@@ -64,14 +68,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                     ((Swap) boardPanel.choosenSpell).setTargetedPosition(null); // Reset targeted position for next use
                     ((Swap) boardPanel.choosenSpell).setChoosenPosition(null);
                     
-                    if(boardPanel.turn == Color.White){
-                        boardPanel.turn = Color.Black;
-                        
-                    }
-                    else{
-                        boardPanel.turn = Color.White;
-                        
-                    }
+                    boardPanel.nextTurn();
                     boardPanel.choosenSpell = null;
 
                 }
@@ -101,16 +98,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                     boardPanel.choosenSpell.setTargetedPosition(null); // Reset targeted position for next use
                     ((Teleport) boardPanel.choosenSpell).setChoosenPosition(null);
                     
-                    if(boardPanel.turn == Color.White){
-                        boardPanel.turn = Color.Black;
-                        boardPanel.turn = Color.White;
-                        boardPanel.turn = Color.Black;
-                    }
-                    else{
-                        boardPanel.turn = Color.White;
-                        boardPanel.turn = Color.Black;
-                        boardPanel.turn = Color.White;
-                    }
+                    boardPanel.nextTurn();
                     boardPanel.choosenSpell = null;
                     boardPanel.repaint();
 
@@ -128,16 +116,19 @@ public class ChessListener implements MouseListener, MouseMotionListener {
             boardPanel.chosenPiece.xPos = e.getX() - Resources.SQUARE_SIZE / 2;
             boardPanel.chosenPiece.yPos = e.getY() - Resources.SQUARE_SIZE / 2;
         }
+        if(boardPanel.choosenSpell != null){
         if(boardPanel.choosenSpell instanceof Freeze){
             boardPanel.choosenSpell.xPos = e.getX() - Resources.SQUARE_SIZE / 2;
             boardPanel.choosenSpell.yPos = e.getY() - Resources.SQUARE_SIZE / 2;
-            boardPanel.choosenSpell.setTargetedPosition(new Position(boardPanel.choosenSpell.xPos,boardPanel.choosenSpell.yPos));
+            boardPanel.choosenSpell.setTargetedPosition(new Position(e.getX() / Resources.SQUARE_SIZE,e.getY() / Resources.SQUARE_SIZE ));
+            boardPanel.repaint();
         }
         if(boardPanel.choosenSpell instanceof Shield){
             boardPanel.choosenSpell.xPos = e.getX() - Resources.SQUARE_SIZE / 2;
             boardPanel.choosenSpell.yPos = e.getY() - Resources.SQUARE_SIZE / 2;
             boardPanel.choosenSpell.setTargetedPosition(new Position(boardPanel.choosenSpell.xPos,boardPanel.choosenSpell.yPos));
         }
+    }
         
     }
     @Override
@@ -159,12 +150,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                         break;
                     }
                     board.movePiece(currentPosition,newPosition);
-                    if(boardPanel.turn == Color.White){
-                        boardPanel.turn = Color.Black;
-                    }
-                    else{
-                        boardPanel.turn = Color.White;
-                    }
+                    boardPanel.nextTurn();
                 }
             }
             boardPanel.chosenPiece.xPos = boardPanel.chosenPiece.position.x * Resources.SQUARE_SIZE;
@@ -174,45 +160,45 @@ public class ChessListener implements MouseListener, MouseMotionListener {
         }
         if(boardPanel.choosenSpell != null){
             if( boardPanel.choosenSpell instanceof Freeze){
+                Freeze tempFreeze = new Freeze(board, 3, 3, 3, boardPanel.choosenSpell.position);
+                tempFreeze.setTargetedPosition(newPosition);
+                activeSpellEffects.add(tempFreeze);
                 int size = ((Freeze) boardPanel.choosenSpell).getSize();
-                for(int i =(-(size-1)/2); i<=((size-1)/2) ; i++){
+                /*for(int i =(-(size-1)/2); i<=((size-1)/2) ; i++){
                     for(int j =(-(size-1)/2); j<=((size-1)/2) ;j++){
-                    newPosition.changePosition(new Position(col+i,row+j ));
+                    newPosition.changePosition(new Position(col+i,row+j ));*/
                     boardPanel.choosenSpell.setTargetedPosition(newPosition);
                     boardPanel.choosenSpell.spellAction();
-                    System.out.println("I am frozen" + newPosition);
-                    }
-                }
-                if(boardPanel.turn == Color.White){
-                        boardPanel.turn = Color.Black;
-                    }
-                    else{
-                        boardPanel.turn = Color.White;
-                    }
+                    
+                    boardPanel.nextTurn();
                      boardPanel.choosenSpell = null;
-              boardPanel.repaint();       
-            }
-            if( boardPanel.choosenSpell instanceof Shield){
+              boardPanel.repaint();   
+                    }
+                    if( boardPanel.choosenSpell instanceof Shield){
+                Shield temp =new Shield(board, 3, 3, boardPanel.choosenSpell.position);
+                temp.setTargetedPosition(newPosition);
+                activeSpellEffects.add(temp);
                 boardPanel.choosenSpell.setTargetedPosition(newPosition);
                 boardPanel.choosenSpell.spellAction();
                 System.out.println(" I am protected");
-                if(boardPanel.turn == Color.White){
-                        boardPanel.turn = Color.Black;
-                    }
-                    else{
-                        boardPanel.turn = Color.White;
-                    }
-                     boardPanel.choosenSpell = null;
+                boardPanel.nextTurn();
+                     boardPanel.choosenSpell.position = (new Position(3, 8)); 
+                    boardPanel.choosenSpell = null;
+                    
+                     boardPanel.repaint();
+            }
+                }
+                
+
             }
             
-        }
+            
+        
 
-    }
+    
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        
-    }
+    public void mouseClicked(MouseEvent e) {}
     @Override
     public void mouseEntered(MouseEvent e) {}
     @Override

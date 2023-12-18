@@ -23,8 +23,8 @@ public class King extends Piece{
         
         List<Position> allMoves = new ArrayList<Position>();
         List<Position> allNewMoves = new ArrayList<Position>();
-
-        if(canMove && capturable){
+        if(canMove){
+            //KING IGNORES THE SHIELD
         allMoves.add(new Position(this.position.x + 1, this.position.y + 1));
         allMoves.add(new Position(this.position.x + 1, this.position.y -1));
         allMoves.add(new Position(this.position.x + 1, this.position.y ));

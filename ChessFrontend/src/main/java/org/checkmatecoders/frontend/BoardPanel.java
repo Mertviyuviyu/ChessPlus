@@ -34,6 +34,24 @@ public class BoardPanel extends JPanel {
         this.addMouseMotionListener(chessListener);
         turn = org.checkmatecoders.engine.Piece.Color.White;
     }
+    public void nextTurn(){
+        if(turn == org.checkmatecoders.engine.Piece.Color.White){
+            turn =org.checkmatecoders.engine.Piece.Color.Black;
+        }
+        else{
+            turn = org.checkmatecoders.engine.Piece.Color.White;
+        }
+        for (int i = 0; i < chessListener.activeSpellEffects.size(); i++) {
+                Spell effect =chessListener.activeSpellEffects.get(i);
+                effect.decrementDuration();
+            
+                if (effect.getDuration() <= 0) {
+                    effect.spellAction();
+                    chessListener.activeSpellEffects.remove(i);
+                    i--; // Adjust index after removal
+                }
+            }
+    }
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -60,6 +78,27 @@ public class BoardPanel extends JPanel {
                 g2.fillRect(p.x * Resources.SQUARE_SIZE, p.y*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
             }
         }
+        if( choosenSpell instanceof Freeze ){
+                Position p = choosenSpell.getTargetedPosition();
+            
+                    g2.setColor(new Color(51,153,255,126));
+                    
+                    g2.fillRect((p.x +1) * Resources.SQUARE_SIZE, (p.y-1)*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+                    g2.fillRect((p.x +1) * Resources.SQUARE_SIZE, p.y*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+                    g2.fillRect((p.x +1) * Resources.SQUARE_SIZE, (p.y+1)*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+                    g2.fillRect(p.x * Resources.SQUARE_SIZE, (p.y-1)*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+                    g2.fillRect(p.x * Resources.SQUARE_SIZE, p.y*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+                    g2.fillRect(p.x * Resources.SQUARE_SIZE, (p.y+1)*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+                    g2.fillRect((p.x -1) * Resources.SQUARE_SIZE, (p.y-1)*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+                    g2.fillRect((p.x -1) * Resources.SQUARE_SIZE, p.y*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+                    g2.fillRect((p.x -1)* Resources.SQUARE_SIZE, (p.y+1)*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+
+                    
+                    }
+                    
+                
+            
+       
 
         //Print the spell deck (only player's deck as it will require interface and interactions //I guess the other deck which shows opponents deck(on the top of the board) will be only indicator which will not be GUI,)
         
@@ -103,14 +142,6 @@ public class BoardPanel extends JPanel {
         
         
         
-        
-        if(choosenSpell != null && choosenSpell.getTargetedPosition() != null && choosenSpell instanceof Freeze){
-            Color color = new Color(51,153,255,126);
-            int col = choosenSpell.getTargetedPosition().x * Resources.SQUARE_SIZE;
-             int row = choosenSpell.getTargetedPosition().y * Resources.SQUARE_SIZE;
-        g.setColor(color);
-        g.fillRect(col, row,  Resources.SQUARE_SIZE,  Resources.SQUARE_SIZE);
-        }
     }
 
     public void drawPieces(Graphics g) {

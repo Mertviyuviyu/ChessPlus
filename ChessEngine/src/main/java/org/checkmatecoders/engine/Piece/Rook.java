@@ -54,7 +54,12 @@ public class Rook extends Piece{
             if(isInBounds(pos)){
                 if(board.isTherePiece(pos)){
                     if(board.getPiece(pos).color != this.color){
-                        allMoves.add(pos);
+                        if(board.getPiece(pos).capturable){
+                            allMoves.add(pos);
+                            }else{
+                                break;
+                            }
+                        
                     }
                     break;
                 }
@@ -67,7 +72,11 @@ public class Rook extends Piece{
             if(isInBounds(pos)){
                 if(board.isTherePiece(pos)){
                     if(board.getPiece(pos).color != this.color){
-                        allMoves.add(pos);
+                        if(board.getPiece(pos).capturable){
+                            allMoves.add(pos);
+                            }else{
+                                break;
+                            }
                     }
                     break;
                 }
@@ -80,7 +89,11 @@ public class Rook extends Piece{
             if(isInBounds(pos)){
                 if(board.isTherePiece(pos)){
                     if(board.getPiece(pos).color != this.color){
-                        allMoves.add(pos);
+                        if(board.getPiece(pos).capturable){
+                            allMoves.add(pos);
+                            }else{
+                                break;
+                            }
                     }
                     break;
                 }
@@ -93,7 +106,11 @@ public class Rook extends Piece{
             if(isInBounds(pos)){
                 if(board.isTherePiece(pos)){
                     if(board.getPiece(pos).color != this.color){
-                        allMoves.add(pos);
+                        if(board.getPiece(pos).capturable){
+                            allMoves.add(pos);
+                            }else{
+                                break;
+                            }
                     }
                     break;
                 }

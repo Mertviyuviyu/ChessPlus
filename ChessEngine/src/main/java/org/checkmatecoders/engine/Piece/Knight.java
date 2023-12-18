@@ -21,7 +21,7 @@ public class Knight extends Piece{
     public List<Position> getValidMoves() {
         List<Position> allMoves = new ArrayList<Position>();
         List<Position> allNewMoves = new ArrayList<Position>();
-        if(canMove && capturable){
+        if(canMove){
         allMoves.add(new Position(this.position.x + 2, this.position.y + 1));
         allMoves.add(new Position(this.position.x + 1, this.position.y + 2));
 
@@ -41,7 +41,7 @@ public class Knight extends Piece{
             if (temp == null)
                 return false;
             if (temp.color != this.color)
-                return false;
+                return false;  
             return true;
         });
     }
