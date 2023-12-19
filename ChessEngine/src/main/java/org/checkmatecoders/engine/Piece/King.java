@@ -50,6 +50,8 @@ public class King extends Piece{
         });
     }
 
+
+
         for(Position i : allMoves){
                 boolean notEqual = true;
                 for(Piece p : board.pieces){
@@ -57,22 +59,22 @@ public class King extends Piece{
                         if(i.equals(p.position)) {
                             allNewMoves.add(i);
                         }
-
-                    }
-                    for(int ii = 0 ; ii<p.getValidMoves2().size();ii++){
-                        if(p.getValidMoves2().get(ii).equals(i)){
-                            notEqual = false;
+                        for(int ii = 0 ; ii<p.getValidMoves2().size();ii++){
+                            if(p.getValidMoves2().get(ii).equals(i)){
+                                notEqual = false;
+                            }
                         }
                     }
+
 
                 }
             if(notEqual){
                 //System.out.println("added"+i);
+                System.out.println(i);
                 allNewMoves.add(i);
             }
 
             }
-
         return allNewMoves;
 
         //previous king allnewmoves finding
