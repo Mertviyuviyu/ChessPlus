@@ -28,6 +28,7 @@ private Piece choosenPiece;
             for(Position pos: moves){
                 if(pos.equals(getTargetedPosition())){
                     board.movePiece(currentPosition,getTargetedPosition());
+                    
                 }
     }
 }

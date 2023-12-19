@@ -161,31 +161,32 @@ public class ChessListener implements MouseListener, MouseMotionListener {
         if(boardPanel.choosenSpell != null){
             if( boardPanel.choosenSpell instanceof Freeze){
                 Freeze tempFreeze = new Freeze(board, 3, 3, 3, boardPanel.choosenSpell.position);
-                tempFreeze.setTargetedPosition(newPosition);
+                Position tempPosition = new Position(newPosition.x, newPosition.y);
+                tempFreeze.setTargetedPosition(tempPosition);
                 activeSpellEffects.add(tempFreeze);
-                int size = ((Freeze) boardPanel.choosenSpell).getSize();
-                /*for(int i =(-(size-1)/2); i<=((size-1)/2) ; i++){
-                    for(int j =(-(size-1)/2); j<=((size-1)/2) ;j++){
-                    newPosition.changePosition(new Position(col+i,row+j ));*/
-                    boardPanel.choosenSpell.setTargetedPosition(newPosition);
-                    boardPanel.choosenSpell.spellAction();
+                
+                boardPanel.choosenSpell.setTargetedPosition(newPosition);
+                boardPanel.choosenSpell.spellAction();
                     
-                    boardPanel.nextTurn();
-                     boardPanel.choosenSpell = null;
-              boardPanel.repaint();   
-                    }
-                    if( boardPanel.choosenSpell instanceof Shield){
+                boardPanel.nextTurn();
+                boardPanel.choosenSpell = null;
+                boardPanel.repaint();   
+                }
+                   
+                if( boardPanel.choosenSpell instanceof Shield){
                 Shield temp =new Shield(board, 3, 3, boardPanel.choosenSpell.position);
-                temp.setTargetedPosition(newPosition);
+                Position tempPosition = new Position(newPosition.x, newPosition.y);
+                temp.setTargetedPosition(tempPosition);
                 activeSpellEffects.add(temp);
                 boardPanel.choosenSpell.setTargetedPosition(newPosition);
                 boardPanel.choosenSpell.spellAction();
                 System.out.println(" I am protected");
                 boardPanel.nextTurn();
-                     boardPanel.choosenSpell.position = (new Position(3, 8)); 
-                    boardPanel.choosenSpell = null;
+                boardPanel.choosenSpell.position.x = 2 * Resources.SQUARE_SIZE; 
+                boardPanel.choosenSpell.position.y = 8 * Resources.SQUARE_SIZE; 
+                boardPanel.choosenSpell = null;
                     
-                     boardPanel.repaint();
+                boardPanel.repaint();
             }
                 }
                 
