@@ -91,7 +91,7 @@ public class BoardPanel extends JPanel {
 
 
         if( choosenSpell instanceof Freeze ){
-                Position p = choosenSpell.getTargetedPosition();
+                Position p = choosenSpell.position;
             
                     g2.setColor(new Color(51,153,255,126));
                     

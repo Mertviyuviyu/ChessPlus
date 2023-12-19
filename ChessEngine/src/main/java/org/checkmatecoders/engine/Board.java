@@ -81,7 +81,7 @@ public class Board {
         addSpell(new Freeze(this, 2, 2,3, new Position(1, 8)));
         addSpell(new Shield(this, 2, 2, new Position(2, 8)));
         addSpell(new TimeTravel(this, 2, 2, new Position(3, 8)));
-
+        listeners.forEach(i -> i.run());
     }
     public int spellSize() { return spells.size();}
     

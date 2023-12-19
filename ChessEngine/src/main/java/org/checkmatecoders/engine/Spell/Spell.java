@@ -21,7 +21,7 @@ public abstract class Spell {
     this.amount = amount;
     this.cooldown = cooldown;
     this.position = position;
-    duration = 2;
+    duration = 3;
 
     currentlyUsed = false;
     xPos = position.x * 70;

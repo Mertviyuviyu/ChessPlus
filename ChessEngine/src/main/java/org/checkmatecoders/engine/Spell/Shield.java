@@ -14,20 +14,22 @@ public class Shield extends Spell {
     @Override
     public boolean checkValidity() {
         // TODO Auto-generated method stub
-        return(board.getPiece(getTargetedPosition()) != null && getTargetedPosition().x >0 && getTargetedPosition().y >0 && getTargetedPosition().x < 8 && getTargetedPosition().y < 8);
+        return(board.getPiece(getTargetedPosition()) != null && getTargetedPosition().x >=0 && getTargetedPosition().y >=0 && getTargetedPosition().x < 8 && getTargetedPosition().y < 8);
     }
 
     @Override
     public void spellAction() {
-        // TODO Auto-generated method stub
+        // Piece holding a shield cannot also move
         if(checkValidity()){
             if(duration>0)
             board.getPiece(getTargetedPosition()).capturable = false;
+            board.getPiece(getTargetedPosition()).canMove = false;
             
             currentlyUsed = true;
 
             if(duration == 0){
             board.getPiece(getTargetedPosition()).capturable = true;
+            board.getPiece(getTargetedPosition()).canMove = true;
             currentlyUsed = false;
             board.initializeSpells();
             System.out.println("Iam not protected");

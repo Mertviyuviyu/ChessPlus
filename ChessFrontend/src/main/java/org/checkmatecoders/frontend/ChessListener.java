@@ -120,13 +120,15 @@ public class ChessListener implements MouseListener, MouseMotionListener {
         if(boardPanel.choosenSpell instanceof Freeze){
             boardPanel.choosenSpell.xPos = e.getX() - Resources.SQUARE_SIZE / 2;
             boardPanel.choosenSpell.yPos = e.getY() - Resources.SQUARE_SIZE / 2;
-            boardPanel.choosenSpell.setTargetedPosition(new Position(e.getX() / Resources.SQUARE_SIZE,e.getY() / Resources.SQUARE_SIZE ));
+            boardPanel.choosenSpell.position = new Position(e.getX() / Resources.SQUARE_SIZE,e.getY() / Resources.SQUARE_SIZE);
+            boardPanel.choosenSpell.setTargetedPosition(new Position(boardPanel.choosenSpell.xPos,boardPanel.choosenSpell.yPos));
             boardPanel.repaint();
         }
         if(boardPanel.choosenSpell instanceof Shield){
             boardPanel.choosenSpell.xPos = e.getX() - Resources.SQUARE_SIZE / 2;
             boardPanel.choosenSpell.yPos = e.getY() - Resources.SQUARE_SIZE / 2;
             boardPanel.choosenSpell.setTargetedPosition(new Position(boardPanel.choosenSpell.xPos,boardPanel.choosenSpell.yPos));
+            boardPanel.repaint();
         }
     }
         
@@ -166,9 +168,14 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                 activeSpellEffects.add(tempFreeze);
                 
                 boardPanel.choosenSpell.setTargetedPosition(newPosition);
+                
                 boardPanel.choosenSpell.spellAction();
+                
                     
                 boardPanel.nextTurn();
+                boardPanel.choosenSpell.position = new Position(1, 8);
+                boardPanel.choosenSpell.xPos = boardPanel.choosenSpell.position.x * Resources.SQUARE_SIZE;
+                boardPanel.choosenSpell.yPos = boardPanel.choosenSpell.position.y * Resources.SQUARE_SIZE;
                 boardPanel.choosenSpell = null;
                 boardPanel.repaint();   
                 }
@@ -182,8 +189,8 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                 boardPanel.choosenSpell.spellAction();
                 System.out.println(" I am protected");
                 boardPanel.nextTurn();
-                boardPanel.choosenSpell.position.x = 2 * Resources.SQUARE_SIZE; 
-                boardPanel.choosenSpell.position.y = 8 * Resources.SQUARE_SIZE; 
+                boardPanel.choosenSpell.xPos = boardPanel.choosenSpell.position.x * Resources.SQUARE_SIZE;
+                boardPanel.choosenSpell.yPos = boardPanel.choosenSpell.position.y * Resources.SQUARE_SIZE;
                 boardPanel.choosenSpell = null;
                     
                 boardPanel.repaint();

@@ -13,13 +13,13 @@ public class Freeze extends Spell {
     int size;
 
 
-    final int freezeTime = 3;
+    final int freezeTime = 5;
 
     public Freeze(Board board, int amount, int cooldown, int size, Position position) {
         super(board, amount, cooldown, position);
         this.size = size;
 
-        super.duration = 3;
+        super.duration = freezeTime;
         //TODO Auto-generated constructor stub
     }
 
@@ -30,7 +30,7 @@ public class Freeze extends Spell {
     @Override
     public boolean checkValidity() {
         //will use no mather how the chess-board condition is
-        return (amount > 0 && board.getPiece(getTargetedPosition()) != null && getTargetedPosition().x > 0 && getTargetedPosition().y > 0 && getTargetedPosition().x < 8 && getTargetedPosition().y < 8);
+        return (board.getPiece(getTargetedPosition()) != null && getTargetedPosition().x >= 0 && getTargetedPosition().y >= 0 && getTargetedPosition().x < 8 && getTargetedPosition().y < 8);
 
     }
 
@@ -43,31 +43,32 @@ public class Freeze extends Spell {
 
 
             if (duration > 0) { //deactivation of piece on that field
-                Position temp = getTargetedPosition();
-                for (int i = (-(size - 1) / 2); i <= ((size - 1) / 2); i++) {
-                    for (int j = (-(size - 1) / 2); j <= ((size - 1) / 2); j++) {
-                        temp.changePosition(new Position(getTargetedPosition().x + i, getTargetedPosition().x + j));
+                Position temp = new Position(getTargetedPosition().x,getTargetedPosition().y);
+                for (int i = (-1); i <= (+1); i++) {
+                    for (int j = (-1); j <= (1); j++) {
+                        getTargetedPosition().changePosition(new Position(temp.x + i, temp.y + j));
 
 
                         if (checkValidity()) {
 
-                            board.getPiece(temp).canMove = false;
-                            System.out.println("I am frozen" + temp);
+                            board.getPiece(getTargetedPosition()).canMove = false;
+                            System.out.println("I am frozen" + getTargetedPosition());
+                            
                             ;
                         }
                     }
                 }
             } else if (duration == 0) {
-                Position temp = getTargetedPosition();
+                Position temp = new Position(getTargetedPosition().x,getTargetedPosition().y);
                 for (int i = (-1); i <= (+1); i++) {
                     for (int j = (-1); j <= (1); j++) {
-                        temp.changePosition(new Position(getTargetedPosition().x + i, getTargetedPosition().x + j));
+                        getTargetedPosition().changePosition(new Position(temp.x + i, temp.y + j));
 
                         if (checkValidity()) {
 
-                            board.getPiece(temp).canMove = true;
-                            System.out.println("I am defrozen" + temp);
-                            board.initializeSpells();
+                            board.getPiece(getTargetedPosition()).canMove = true;
+                            System.out.println("I am defrozen" + getTargetedPosition());
+                            
 
                         }
                     }
