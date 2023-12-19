@@ -59,6 +59,7 @@ public abstract class Piece {
                 winner = Color.White;
             }
             JOptionPane.showMessageDialog(null, "Winner is "+winner);
+            board.resetToStart();
         }
     }
 

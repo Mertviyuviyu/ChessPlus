@@ -26,7 +26,6 @@ private Position choosenPosition;
             Piece victim = board.getPiece(choosenPosition);
             Piece target = board.getPiece(getTargetedPosition());
 
-            
 
             victim.move(new Position(5, 5));
             board.movePiece(getTargetedPosition(),choosenPosition);

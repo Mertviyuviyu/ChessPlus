@@ -29,6 +29,7 @@ public class Shield extends Spell {
             if(duration == 0){
             board.getPiece(getTargetedPosition()).capturable = true;
             currentlyUsed = false;
+            board.initializeSpells();
             System.out.println("Iam not protected");
         }
             
