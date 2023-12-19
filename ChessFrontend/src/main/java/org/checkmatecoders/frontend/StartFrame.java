@@ -5,20 +5,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class StartFrame extends JFrame implements ActionListener {
     JButton but;
     BoardPanel b;
     public StartFrame(){
-        setLayout(new BorderLayout());
+        setLayout(null);
         but = new JButton("Play");
-        but.setPreferredSize(new Dimension(200,80));
         but.addActionListener(this);
+        but.setBackground(Color.BLACK);
+        but.setForeground(Color.RED);
+        but.setFont(new Font("Arial", Font.BOLD, 25));
         add(but, BorderLayout.SOUTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500,500);
+        but.setBounds(150,350,200,75);
         setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
     }
 
     @Override
@@ -28,12 +33,11 @@ public class StartFrame extends JFrame implements ActionListener {
         g.setFont(new Font("Arial", Font.BOLD, 50));
         g.setColor(Color.BLACK);
         g.drawString("Chess+",170,70);
-        g.setColor(new Color(10, 10, 10));
         g.setFont(new Font("Arial", Font.BOLD, 25));
         g.drawString("Credits:",50,120);
-        g.drawString("Mustafa Mert Gulhan", 50, 180);
-        g.drawString("Anil Keskin", 50, 210);
-        g.drawString("Altay Ilker Yigitel", 50, 150);
+        g.drawString("Mustafa Mert Gulhan", 50, 150);
+        g.drawString("Anil Keskin", 50, 180);
+        g.drawString("Altay Ilker Yigitel", 50, 210);
         g.drawString("Emre Algur", 50, 240);
 
     }

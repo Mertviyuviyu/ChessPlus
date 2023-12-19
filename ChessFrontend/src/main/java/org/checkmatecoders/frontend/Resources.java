@@ -3,6 +3,7 @@ package org.checkmatecoders.frontend;
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -27,6 +28,7 @@ public class Resources {
     public static Image shield;
     public static Image time;
     public static Image play;
+    public static File font;
     public static final int SQUARE_SIZE = 70;
     public static final int SPELL_SIZE = 50;
 
@@ -50,7 +52,8 @@ public class Resources {
             swap = ImageIO.read(loader.getResource("swap.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
             shield = ImageIO.read(loader.getResource("shield.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
             time = ImageIO.read(loader.getResource("time.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
-            play = ImageIO.read(loader.getResource("play.png"));
+            play = ImageIO.read(loader.getResource("play.png")).getScaledInstance(500,500, BufferedImage.SCALE_SMOOTH);;
+            //font = new File(String.valueOf(loader.getResource("Fraktur.tff")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
