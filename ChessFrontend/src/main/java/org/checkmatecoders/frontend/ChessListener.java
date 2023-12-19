@@ -64,6 +64,11 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                     System.out.println("Second piece chosen: " + secondPosition);
                     ((Swap) boardPanel.choosenSpell).setTargetedPosition(secondPosition); 
                     boardPanel.choosenSpell.spellAction(); // Perform the spell action after both pieces are chosen
+                    board.getPiece(((Swap) boardPanel.choosenSpell).getChoosenPosition()).xPos =  board.getPiece(((Swap) boardPanel.choosenSpell).getChoosenPosition()).position.x *Resources.SQUARE_SIZE;
+                    board.getPiece(((Swap) boardPanel.choosenSpell).getChoosenPosition()).yPos =  board.getPiece(((Swap) boardPanel.choosenSpell).getChoosenPosition()).position.y *Resources.SQUARE_SIZE;
+
+                    board.getPiece(((Swap) boardPanel.choosenSpell).getTargetedPosition()).xPos =  board.getPiece(((Swap) boardPanel.choosenSpell).getTargetedPosition()).position.x *Resources.SQUARE_SIZE;
+                    board.getPiece(((Swap) boardPanel.choosenSpell).getTargetedPosition()).yPos =  board.getPiece(((Swap) boardPanel.choosenSpell).getTargetedPosition()).position.y *Resources.SQUARE_SIZE;
                     boardPanel.repaint();
                     ((Swap) boardPanel.choosenSpell).setTargetedPosition(null); // Reset targeted position for next use
                     ((Swap) boardPanel.choosenSpell).setChoosenPosition(null);
