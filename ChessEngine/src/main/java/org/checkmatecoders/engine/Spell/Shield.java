@@ -14,7 +14,7 @@ public class Shield extends Spell {
     @Override
     public boolean checkValidity() {
         // TODO Auto-generated method stub
-        return(board.getPiece(getTargetedPosition()) != null);
+        return(board.getPiece(getTargetedPosition()) != null && getTargetedPosition().x >0 && getTargetedPosition().y >0 && getTargetedPosition().x < 8 && getTargetedPosition().y < 8);
     }
 
     @Override

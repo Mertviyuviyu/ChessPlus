@@ -35,6 +35,9 @@ public int getAmount(){ return this.amount; }
 
 public int getCooldown(){ return this.cooldown; }
 
+public void decrementAmount(){
+    this.amount--;
+}
 
 public abstract boolean checkValidity();
 

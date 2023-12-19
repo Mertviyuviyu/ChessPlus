@@ -18,8 +18,8 @@ public class Freeze extends Spell {
     public Freeze(Board board, int amount, int cooldown, int size, Position position) {
         super(board, amount, cooldown, position);
         this.size = size;
-        super.duration = 3;
 
+        super.duration = 3;
         //TODO Auto-generated constructor stub
     }
 
