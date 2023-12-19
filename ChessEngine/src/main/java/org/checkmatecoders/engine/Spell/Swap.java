@@ -29,7 +29,8 @@ private Position choosenPosition;
 
             victim.move(new Position(5, 5));
             board.movePiece(getTargetedPosition(),choosenPosition);
-            victim.move(getTargetedPosition());
+            victim.position.changePosition(getTargetedPosition());
+            board.pieces.add(victim);
             
             System.out.println("Swapped");
         }
