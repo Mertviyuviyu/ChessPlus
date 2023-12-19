@@ -14,7 +14,7 @@ public class Knight extends Piece{
 
     @Override
     public List<Position> checkDirection() {
-        return null;
+        return new ArrayList<Position>();
     }
 
     @Override
