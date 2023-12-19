@@ -50,8 +50,33 @@ public class King extends Piece{
         });
     }
 
+        for(Position i : allMoves){
+                boolean notEqual = true;
+                for(Piece p : board.pieces){
+                    if(p.color !=this.color){
+                        if(i.equals(p.position)) {
+                            allNewMoves.add(i);
+                        }
 
-        if(board.check().size()==0){
+                    }
+                    for(int ii = 0 ; ii<p.getValidMoves2().size();ii++){
+                        if(p.getValidMoves2().get(ii).equals(i)){
+                            notEqual = false;
+                        }
+                    }
+
+                }
+            if(notEqual){
+                //System.out.println("added"+i);
+                allNewMoves.add(i);
+            }
+
+            }
+
+        return allNewMoves;
+
+        //previous king allnewmoves finding
+        /*if(board.check().size()==0){
 
             return allMoves;
         }
@@ -78,7 +103,7 @@ public class King extends Piece{
         }
         //System.out.println("New"+allNewMoves);
         //System.out.println(board.check().size());
-        return allNewMoves;
+        return allNewMoves;*/
     }
     @Override
     public List<Position> getValidMoves2() {
