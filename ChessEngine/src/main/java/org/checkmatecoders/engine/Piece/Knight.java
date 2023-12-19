@@ -40,7 +40,7 @@ public class Knight extends Piece{
             Piece temp = this.board.getPiece(i);
             if (temp == null)
                 return false;
-            if (temp.color != this.color)
+            if (temp.color != this.color && temp.capturable)
                 return false;  
             return true;
         });

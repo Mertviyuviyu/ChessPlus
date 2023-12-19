@@ -196,7 +196,6 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                 boardPanel.repaint();
             }
                 }
-                
 
             }
             
@@ -206,7 +205,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
     
 
     @Override
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {boardPanel.repaint();}
     @Override
     public void mouseEntered(MouseEvent e) {}
     @Override
