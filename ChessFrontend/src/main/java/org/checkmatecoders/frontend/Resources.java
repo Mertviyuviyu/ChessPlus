@@ -53,7 +53,7 @@ public class Resources {
             shield = ImageIO.read(loader.getResource("shield.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
             time = ImageIO.read(loader.getResource("time.png")).getScaledInstance(SPELL_SIZE, SPELL_SIZE, BufferedImage.SCALE_SMOOTH);;
             play = ImageIO.read(loader.getResource("play.png")).getScaledInstance(500,500, BufferedImage.SCALE_SMOOTH);;
-            //font = new File(String.valueOf(loader.getResource("Fraktur.tff")));
+            font = new File(loader.getResource("Fraktur.ttf").getFile());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

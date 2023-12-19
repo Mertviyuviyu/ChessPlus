@@ -32,7 +32,7 @@ public class StartFrame extends JFrame implements ActionListener {
         setResizable(false);
         try {
   
-            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\emrea\\OneDrive\\Masaüstü\\Yeni klasör\\java\\okaygame\\ChessPlus\\ChessFrontend\\src\\main\\resources//Fraktur.ttf")).deriveFont(60f);
+            customFont = Font.createFont(Font.TRUETYPE_FONT, Resources.font).deriveFont(60f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(customFont);
             but.setFont(customFont);
