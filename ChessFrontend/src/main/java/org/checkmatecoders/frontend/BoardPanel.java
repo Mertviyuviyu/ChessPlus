@@ -70,6 +70,16 @@ public class BoardPanel extends JPanel {
                 g2.fillRect(x, y, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
             }
         }
+        for( Piece p : board.pieces){
+            if(!p.canMove){
+            g2.setColor(new Color(51,153,255,126));
+            g2.fillRect(p.xPos, p.yPos,Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
+            }
+            if(!p.capturable){
+            g2.setColor(new Color(255, 215, 0,127)); 
+            g2.fillRect(p.xPos, p.yPos,Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);   
+            }
+        }
 
         if(chosenPiece != null && chosenPiece.color == turn){
             List<Position> moves = chosenPiece.getValidMoves();
@@ -78,6 +88,8 @@ public class BoardPanel extends JPanel {
                 g2.fillRect(p.x * Resources.SQUARE_SIZE, p.y*Resources.SQUARE_SIZE, Resources.SQUARE_SIZE, Resources.SQUARE_SIZE);
             }
         }
+
+
         if( choosenSpell instanceof Freeze ){
                 Position p = choosenSpell.getTargetedPosition();
             
