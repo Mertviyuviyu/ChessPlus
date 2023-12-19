@@ -45,11 +45,10 @@ public abstract class Piece {
         Color winner;
         boolean lost = true;
         for(Piece i : board.pieces){
-            if(!(i instanceof King)){
-                if(!i.getValidMoves().isEmpty() && i.color==c){
-                    lost = false;
-                }
+            if(!i.getValidMoves().isEmpty() && i.color==c){
+                lost = false;
             }
+
         }
         if(lost){
             if(c == Color.White){

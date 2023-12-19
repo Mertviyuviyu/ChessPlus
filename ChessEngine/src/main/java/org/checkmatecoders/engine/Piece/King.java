@@ -52,27 +52,32 @@ public class King extends Piece{
 
 
         if(board.check().size()==0){
+
             return allMoves;
         }
-        System.out.println(allMoves);
+        //System.out.println("Dir"+this.board.getPiece(board.check().get(0)).checkDirection());
+        //System.out.println("allM"+allMoves);
         for(Position i : allMoves){
             if(i.equals(board.check().get(0))){
                 allNewMoves.add(i);
+                //System.out.println("checkposadded");
             }
             else{
-                for(int ii = 0 ; ii<this.board.getPiece(board.check().get(0)).checkDirection().size();ii++){
-                    boolean notEqual = true;
-                    if(this.board.getPiece(board.check().get(0)).checkDirection().get(ii) == i){
+                boolean notEqual = true;
+                for(int ii = 0 ; ii<this.board.getPiece(board.check().get(0)).getValidMoves2().size();ii++){
+                    if(this.board.getPiece(board.check().get(0)).getValidMoves2().get(ii).equals(i)){
                         notEqual = false;
                     }
-                    if(notEqual){
-                        allMoves.add(i);
-                    }
+                }
+                if(notEqual){
+                    //System.out.println("added"+i);
+                    allNewMoves.add(i);
                 }
             }
 
         }
-        System.out.println(allNewMoves);
+        //System.out.println("New"+allNewMoves);
+        //System.out.println(board.check().size());
         return allNewMoves;
     }
     @Override
