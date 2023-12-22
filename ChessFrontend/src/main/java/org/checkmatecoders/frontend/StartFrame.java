@@ -45,7 +45,7 @@ public class StartFrame extends JFrame implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         g.drawImage(Resources.startingPage, 0,0, null);
-         g.setFont(customFont);
+         g.setFont(new Font("Arial", Font.BOLD, 50));
         g.setColor(Color.BLACK);
         g.drawString("Chess+", 170, 70);
         g.setFont(new Font("Arial", Font.BOLD, 25));
@@ -67,6 +67,8 @@ public class StartFrame extends JFrame implements ActionListener {
             f.setLayout(new BorderLayout());
             f.setSize(new Dimension(800, 900));
             f.setLocationRelativeTo(null);
+            f.setResizable(false);
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             b = new BoardPanel();
             //SpellPanel s = new SpellPanel();
 

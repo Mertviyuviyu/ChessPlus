@@ -42,7 +42,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
         if(spellTry != null){
             boardPanel.choosenSpell = spellTry;
             boardPanel.choosenSpell.setTargetedPosition(new Position(col, row));
-            System.out.println("I was chosen");
+            //System.out.println("I was chosen");
         }
         
         if (boardPanel.choosenSpell instanceof Swap) {
@@ -52,7 +52,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
     
                 Position firstPosition = new Position(col1, row1);
                 if (boardPanel.choosenSpell.board.getPiece(firstPosition) != null) {
-                    System.out.println("First piece chosen: " + firstPosition);
+                    //System.out.println("First piece chosen: " + firstPosition);
                     ((Swap) boardPanel.choosenSpell).setChoosenPosition(firstPosition);
                 }
             } else {
@@ -61,9 +61,14 @@ public class ChessListener implements MouseListener, MouseMotionListener {
     
                 Position secondPosition = new Position(col2, row2);
                 if (boardPanel.choosenSpell.board.getPiece(secondPosition) != null) {
-                    System.out.println("Second piece chosen: " + secondPosition);
+                    //System.out.println("Second piece chosen: " + secondPosition);
                     ((Swap) boardPanel.choosenSpell).setTargetedPosition(secondPosition); 
                     boardPanel.choosenSpell.spellAction(); // Perform the spell action after both pieces are chosen
+                    board.getPiece(((Swap) boardPanel.choosenSpell).getChoosenPosition()).xPos =  board.getPiece(((Swap) boardPanel.choosenSpell).getChoosenPosition()).position.x *Resources.SQUARE_SIZE;
+                    board.getPiece(((Swap) boardPanel.choosenSpell).getChoosenPosition()).yPos =  board.getPiece(((Swap) boardPanel.choosenSpell).getChoosenPosition()).position.y *Resources.SQUARE_SIZE;
+
+                    board.getPiece(((Swap) boardPanel.choosenSpell).getTargetedPosition()).xPos =  board.getPiece(((Swap) boardPanel.choosenSpell).getTargetedPosition()).position.x *Resources.SQUARE_SIZE;
+                    board.getPiece(((Swap) boardPanel.choosenSpell).getTargetedPosition()).yPos =  board.getPiece(((Swap) boardPanel.choosenSpell).getTargetedPosition()).position.y *Resources.SQUARE_SIZE;
                     boardPanel.repaint();
                     ((Swap) boardPanel.choosenSpell).setTargetedPosition(null); // Reset targeted position for next use
                     ((Swap) boardPanel.choosenSpell).setChoosenPosition(null);
@@ -81,7 +86,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
     
                 Position firstPosition = new Position(col1, row1);
                 if (boardPanel.choosenSpell.board.getPiece(firstPosition) != null) {
-                    System.out.println("The piece chosen: " + firstPosition);
+                    //System.out.println("The piece chosen: " + firstPosition);
                     ((Teleport) boardPanel.choosenSpell).setChoosenPosition(firstPosition);
                 }
 
@@ -91,7 +96,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
     
                 Position secondPosition = new Position(col2, row2);
                 if (boardPanel.choosenSpell.board.getPiece(secondPosition) != null) {
-                    System.out.println("Place chosen: " + secondPosition);
+                    //System.out.println("Place chosen: " + secondPosition);
                     ((Teleport) boardPanel.choosenSpell).setTargetedPosition(secondPosition); 
                     boardPanel.choosenSpell.spellAction(); // Perform the spell action after both pieces are chosen
                     
@@ -106,7 +111,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
             }
     }
     if(boardPanel.choosenSpell instanceof TimeTravel){
-        System.out.println("ZA WARUDOO!");
+        //System.out.println("ZA WARUDOO!");
 
     }
 }
@@ -187,7 +192,7 @@ public class ChessListener implements MouseListener, MouseMotionListener {
                 activeSpellEffects.add(temp);
                 boardPanel.choosenSpell.setTargetedPosition(newPosition);
                 boardPanel.choosenSpell.spellAction();
-                System.out.println(" I am protected");
+                //System.out.println(" I am protected");
                 boardPanel.nextTurn();
                 boardPanel.choosenSpell.xPos = boardPanel.choosenSpell.position.x * Resources.SQUARE_SIZE;
                 boardPanel.choosenSpell.yPos = boardPanel.choosenSpell.position.y * Resources.SQUARE_SIZE;

@@ -52,7 +52,8 @@ public class Freeze extends Spell {
                         if (checkValidity()) {
 
                             board.getPiece(getTargetedPosition()).canMove = false;
-                            System.out.println("I am frozen" + getTargetedPosition());
+
+                            //System.out.println("I am frozen" + getTargetedPosition());
                             
                             ;
                         }
@@ -67,7 +68,7 @@ public class Freeze extends Spell {
                         if (checkValidity()) {
 
                             board.getPiece(getTargetedPosition()).canMove = true;
-                            System.out.println("I am defrozen" + getTargetedPosition());
+                            //System.out.println("I am defrozen" + getTargetedPosition());
                             
 
                         }
